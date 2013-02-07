@@ -338,6 +338,7 @@ LICENSE:
 
 #elif defined(__AVR_ATmega64__) || defined(__AVR_ATmega128__) || defined(__AVR_ATmega162__) \
 	 || defined(__AVR_ATmega1280__) || defined(__AVR_ATmega2560__) || defined(__AVR_ATmega2561__)
+#ifndef _USE_UART1
 	/* ATMega with two USART, use UART0 */
 	#define	UART_BAUD_RATE_LOW			UBRR0L
 	#define	UART_STATUS_REG				UCSR0A
@@ -348,6 +349,19 @@ LICENSE:
 	#define	UART_RECEIVE_COMPLETE		RXC0
 	#define	UART_DATA_REG				UDR0
 	#define	UART_DOUBLE_SPEED			U2X0
+#else
+	/* ... or use UART1 */
+	#define	UART_BAUD_RATE_LOW			UBRR1L
+	#define	UART_STATUS_REG				UCSR1A
+	#define	UART_CONTROL_REG			UCSR1B
+	#define	UART_ENABLE_TRANSMITTER		TXEN1
+	#define	UART_ENABLE_RECEIVER		RXEN1
+	#define	UART_TRANSMIT_COMPLETE		TXC1
+	#define	UART_RECEIVE_COMPLETE		RXC1
+	#define	UART_DATA_REG				UDR1
+	#define	UART_DOUBLE_SPEED			U2X1
+#endif
+
 #elif defined(UBRR0L) && defined(UCSR0A) && defined(TXEN0)
 	/* ATMega with two USART, use UART0 */
 	#define	UART_BAUD_RATE_LOW			UBRR0L

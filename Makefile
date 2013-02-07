@@ -342,6 +342,21 @@ mega2560:	CFLAGS += -D_MEGA_BOARD_
 mega2560:	begin gccversion sizebefore build sizeafter end 
 			mv $(TARGET).hex stk500boot_v2_mega2560.hex
 
+# 2560 w/ bootloader on UART1
+mega2560_uart1:	MCU = atmega2560
+mega2560_uart1:	F_CPU = 16000000
+mega2560_uart1:	BOOTLOADER_ADDRESS = 3E000
+mega2560_uart1:	CFLAGS += -D_MEGA_BOARD_ -D_USE_UART1
+mega2560_uart1:	begin gccversion sizebefore build sizeafter end 
+			mv $(TARGET).hex stk500boot_v2_mega2560_uart1.hex
+
+# 2561 w/ bootloader on UART1
+mega2561_uart1:	MCU = atmega2561
+mega2561_uart1:	F_CPU = 16000000
+mega2561_uart1:	BOOTLOADER_ADDRESS = 3E000
+mega2561_uart1:	CFLAGS += -D_MEGA_BOARD_ -D_USE_UART1
+mega2561_uart1:	begin gccversion sizebefore build sizeafter end 
+			mv $(TARGET).hex stk500boot_v2_mega2561_uart1.hex
 
 ############################################################
 #Initial config on Amber128 board
